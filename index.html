@@ -1,0 +1,299 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英文單字複習工具</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SheetJS for Excel parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div id="root" class="container mx-auto p-4"></div>
+
+    <script type="text/babel">
+        function VocabReview() {
+            const [vocabData, setVocabData] = React.useState([]);
+            const [currentIndex, setCurrentIndex] = React.useState(0);
+            const [loading, setLoading] = React.useState(false);
+            const [error, setError] = React.useState('');
+            const [randomMode, setRandomMode] = React.useState(false);
+            const [voices, setVoices] = React.useState([]);
+            const [selectedVoice, setSelectedVoice] = React.useState(null);
+
+            // Load available voices
+            React.useEffect(() => {
+                const updateVoices = () => {
+                    const availableVoices = window.speechSynthesis.getVoices().filter(v => v.lang.includes('en'));
+                    setVoices(availableVoices);
+                    if (availableVoices.length > 0) {
+                        setSelectedVoice(availableVoices[0]); // Default to first English voice
+                    }
+                };
+                updateVoices();
+                window.speechSynthesis.onvoiceschanged = updateVoices; // Handle async voice loading
+                return () => { window.speechSynthesis.onvoiceschanged = null; };
+            }, []);
+
+            // Handle Excel file upload
+            const handleFileUpload = (event) => {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                setLoading(true);
+                setError('');
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+                        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                        const jsonData = XLSX.utils.sheet_to_json(sheet, { 
+                            header: ['word', 'chinese', 'example'], 
+                            skipHeader: true 
+                        });
+
+                        // Process data to split example and translation
+                        const processedData = jsonData.map(row => {
+                            const exampleParts = row.example?.match(/(.+?)\s*\((.+?)\)/);
+                            return {
+                                word: row.word || '',
+                                chinese: row.chinese || '',
+                                example: exampleParts ? exampleParts[1].trim() : row.example || '',
+                                exampleChinese: exampleParts ? exampleParts[2].trim() : ''
+                            };
+                        }).filter(row => row.word && row.example);
+
+                        if (processedData.length === 0) {
+                            setError('Excel 檔案中沒有有效資料！');
+                            setVocabData([]);
+                        } else {
+                            setVocabData(processedData);
+                            setCurrentIndex(0);
+                        }
+                        setLoading(false);
+                    } catch (err) {
+                        setError('無法解析 Excel 檔案，請確保格式正確！');
+                        setLoading(false);
+                    }
+                };
+                reader.readAsArrayBuffer(file);
+            };
+
+            // Play audio using Web Speech API
+            const playAudio = (text) => {
+                if (!text || typeof text !== 'string') {
+                    setError('無有效文字可播放！');
+                    return;
+                }
+                try {
+                    window.speechSynthesis.cancel(); // Stop any ongoing speech
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'en-US';
+                    if (selectedVoice) {
+                        utterance.voice = selectedVoice;
+                    }
+                    utterance.onerror = () => setError('語音播放失敗，請檢查瀏覽器音頻設定！');
+                    window.speechSynthesis.speak(utterance);
+                } catch (err) {
+                    setError('語音播放錯誤：' + err.message);
+                }
+            };
+
+            // Test audio
+            const testAudio = () => {
+                playAudio('This is a test.');
+            };
+
+            // Navigation functions
+            const nextWord = () => {
+                if (vocabData.length === 0) return;
+                if (randomMode) {
+                    let newIndex;
+                    do {
+                        newIndex = Math.floor(Math.random() * vocabData.length);
+                    } while (newIndex === currentIndex && vocabData.length > 1); // Avoid repeating current word
+                    setCurrentIndex(newIndex);
+                } else if (currentIndex < vocabData.length - 1) {
+                    setCurrentIndex(currentIndex + 1);
+                }
+            };
+
+            const prevWord = () => {
+                if (vocabData.length === 0) return;
+                if (randomMode) {
+                    let newIndex;
+                    do {
+                        newIndex = Math.floor(Math.random() * vocabData.length);
+                    } while (newIndex === currentIndex && vocabData.length > 1);
+                    setCurrentIndex(newIndex);
+                } else if (currentIndex > 0) {
+                    setCurrentIndex(currentIndex - 1);
+                }
+            };
+
+            // Toggle random mode
+            const toggleRandomMode = () => {
+                setRandomMode(!randomMode);
+            };
+
+            // Render UI
+            return (
+                <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+                    <h1 className="text-2xl font-bold text-center mb-4">英文單字複習工具</h1>
+                    
+                    {/* File upload input */}
+                    <div className="mb-4">
+                        <label className="block text-lg font-medium mb-2">上傳 Excel 檔案 (格式請用->.xlsx)：</label>
+                        <input
+                            type="file"
+                            accept=".xlsx,.xls"
+                            onChange={handleFileUpload}
+                            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                        />
+                    </div>
+
+                    {/* Voice selection */}
+                    {voices.length > 0 && (
+                        <div className="mb-4">
+                            <label className="block text-lg font-medium mb-2">選擇語音：</label>
+                            <select
+                                value={selectedVoice ? selectedVoice.name : ''}
+                                onChange={(e) => {
+                                    const voice = voices.find(v => v.name === e.target.value);
+                                    setSelectedVoice(voice);
+                                }}
+                                className="w-full p-2 border rounded"
+                            >
+                                {voices.map(voice => (
+                                    <option key={voice.name} value={voice.name}>{voice.name} ({voice.lang})</option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
+
+                    {/* Test audio button */}
+                    <div className="mb-4">
+                        <button
+                            onClick={testAudio}
+                            className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
+                        >
+                            測試語音
+                        </button>
+                    </div>
+
+                    {/* Error message */}
+                    {error && (
+                        <div className="text-center text-red-600 mb-4">{error}</div>
+                    )}
+
+                    {/* Loading state */}
+                    {loading && (
+                        <div className="text-center text-xl text-gray-600 mb-4">
+                            正在載入單字資料...
+                        </div>
+                    )}
+
+                    {/* Vocabulary display */}
+                    {vocabData.length > 0 && !loading && (
+                        <>
+                            <div className="mb-4">
+                                <p className="text-lg"><strong>單字：</strong> {vocabData[currentIndex].word}</p>
+                                <p className="text-lg"><strong>中文解釋：</strong> {vocabData[currentIndex].chinese}</p>
+                                <p className="text-lg"><strong>英文例句：</strong> {vocabData[currentIndex].example}</p>
+                                <p className="text-lg"><strong>例句翻譯：</strong> {vocabData[currentIndex].exampleChinese}</p>
+                            </div>
+                            <div className="flex justify-center space-x-4 mb-4">
+                                <button
+                                    onClick={() => playAudio(vocabData[currentIndex].word)}
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                                >
+                                    播放單字
+                                </button>
+                                <button
+                                    onClick={() => playAudio(vocabData[currentIndex].example)}
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                                >
+                                    播放例句
+                                </button>
+                            </div>
+                            <div className="flex justify-between mb-4">
+                                <button
+                                    onClick={prevWord}
+                                    disabled={vocabData.length === 0 || (!randomMode && currentIndex === 0)}
+                                    className={`px-4 py-2 rounded ${vocabData.length === 0 || (!randomMode && currentIndex === 0) ? 'bg-gray-300 cursor-not-allowed' : 'bg-green-500 text-white hover:bg-green-600'}`}
+                                >
+                                    上一個
+                                </button>
+                                <button
+                                    onClick={nextWord}
+                                    disabled={vocabData.length === 0 || (!randomMode && currentIndex === vocabData.length - 1)}
+                                    className={`px-4 py-2 rounded ${vocabData.length === 0 || (!randomMode && currentIndex === vocabData.length - 1) ? 'bg-gray-300 cursor-not-allowed' : 'bg-green-500 text-white hover:bg-green-600'}`}
+                                >
+                                    下一個
+                                </button>
+                            </div>
+                            <div className="text-center">
+                                <button
+                                    onClick={toggleRandomMode}
+                                    className={`px-4 py-2 rounded ${randomMode ? 'bg-yellow-500 text-white hover:bg-yellow-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                                >
+                                    {randomMode ? '關閉隨機模式' : '開啟隨機模式'}
+                                </button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
+        // Render React app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<VocabReview />);
+    </script>
+
+    <!-- React and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
