@@ -14,968 +14,727 @@
         }
         
         body {
-            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            background-color: #f5f9fc;
             color: #333;
             line-height: 1.6;
             padding: 20px;
-            min-height: 100vh;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .quick-nav {
-            position: sticky;
-            top: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 100;
-            margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .nav-btn {
-            padding: 8px 15px;
-            background: linear-gradient(to right, #4CAF50, #2E7D32);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
         
         header {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 30px 20px;
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #4CAF50;
-            background: linear-gradient(to right, #E8F5E9, #C8E6C9);
-            padding: 20px;
-            border-radius: 15px;
         }
         
         h1 {
-            color: #2E7D32;
             font-size: 2.5rem;
             margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .quick-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px;
+            background: #E8F5E9;
+        }
+        
+        .nav-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-btn:hover {
+            background: #2E7D32;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 8px rgba(0,0,0,0.15);
+        }
+        
+        section {
+            padding: 30px;
+            border-bottom: 1px solid #e0e0e0;
         }
         
         h2 {
-            color: #388E3C;
-            margin: 25px 0 15px;
+            color: #2E7D32;
+            margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #C8E6C9;
         }
         
         h3 {
-            color: #4CAF50;
-            margin: 20px 0 10px;
+            color: #388E3C;
+            margin: 25px 0 15px;
         }
         
-        .lesson-content {
-            background: #E8F5E9;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            line-height: 2.2;
-            font-size: 1.3rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .bopomofo {
-            font-size: 0.8em;
-            color: #FF5722;
-            vertical-align: top;
-            margin-right: 2px;
-        }
-        
-        .vocabulary-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 18px;
-            margin: 25px 0;
-        }
-        
-        .vocabulary-item {
-            background: linear-gradient(to bottom, #E8F5E9, #C8E6C9);
-            padding: 18px 12px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            cursor: pointer;
-            border: 2px solid #A5D6A7;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .vocabulary-item:hover, .vocabulary-item.active {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-            background: linear-gradient(to bottom, #C8E6C9, #A5D6A7);
-            border-color: #4CAF50;
-        }
-        
-        .vocabulary-item .bopomofo-small {
-            display: block;
-            font-size: 0.9rem;
-            color: #FF5722;
-            margin-top: 5px;
-        }
-        
-        .similar-characters, .polyphonic-characters {
+        .vocab-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
-            margin: 25px 0;
         }
         
-        .character-group {
+        .vocab-card {
             background: #F1F8E9;
+            border-radius: 10px;
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             transition: transform 0.3s;
-            cursor: pointer;
         }
         
-        .character-group:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        .vocab-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .character-group h3 {
+        .character {
+            font-size: 2.5rem;
             text-align: center;
-            padding-bottom: 10px;
             margin-bottom: 15px;
-            border-bottom: 2px solid #C8E6C9;
-            color: #2E7D32;
+            color: #1B5E20;
         }
         
-        .character-group ul {
-            list-style-type: none;
-            padding-left: 10px;
-            margin-top: 10px;
-        }
-        
-        .character-group li {
-            padding: 8px 0;
-            font-size: 1.2rem;
-            border-bottom: 1px dashed #C8E6C9;
-        }
-        
-        .character-group li:last-child {
-            border-bottom: none;
-        }
-        
-        .character-detail {
-            display: none;
-            background: linear-gradient(to bottom, #E8F5E9, #F1F8E9);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            border: 2px solid #A5D6A7;
-        }
-        
-        .character-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-        
-        .character-large {
-            font-size: 140px;
-            line-height: 1;
-            color: #2E7D32;
-            text-shadow: 3px 3px 5px rgba(0,0,0,0.1);
-            margin-right: 30px;
-        }
-        
-        .character-info-basic {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
-        
-        .character-info-basic p {
-            margin: 10px 0;
-            font-size: 1.2rem;
-        }
-        
-        .character-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-        
-        .info-section {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
-        
-        .info-section h3 {
-            color: #2E7D32;
-            display: flex;
-            align-items: center;
-        }
-        
-        .info-section h3 i {
-            margin-right: 10px;
-            color: #4CAF50;
-        }
-        
-        .info-section ul {
-            padding-left: 25px;
-            margin-top: 15px;
-            list-style-type: none;
-        }
-        
-        .info-section li {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .external-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .external-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background: linear-gradient(to right, #4CAF50, #2E7D32);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .external-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            background: linear-gradient(to right, #2E7D32, #1B5E20);
-        }
-        
-        .download-btn {
-            display: block;
-            width: 250px;
-            margin: 40px auto;
-            padding: 15px;
-            background: linear-gradient(to right, #4CAF50, #2E7D32);
-            color: white;
+        .pinyin {
             text-align: center;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
             font-size: 1.2rem;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            transition: all 0.3s;
+            color: #666;
+            margin-bottom: 15px;
         }
         
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            background: linear-gradient(to right, #2E7D32, #1B5E20);
+        .radical-strokes {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            background: #E8F5E9;
+            padding: 8px 15px;
+            border-radius: 5px;
         }
         
-        .highlight {
-            background: #FFF9C4;
-            padding: 0 5px;
-            border-radius: 4px;
+        .words, .idioms, .sentences {
+            margin-bottom: 15px;
         }
         
-        .section-icon {
+        .words span, .idioms span, .sentences span {
             display: inline-block;
+            background: #C8E6C9;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+        
+        .phrases-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .phrase-item {
+            background: #E8F5E9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .phrase {
+            font-size: 1.5rem;
+            color: #1B5E20;
+            margin-bottom: 10px;
+        }
+        
+        .phrase-pinyin {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
             background: #4CAF50;
             color: white;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
             border-radius: 50%;
-            margin-right: 15px;
-            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
         }
         
-        .similar-characters .bopomofo, .polyphonic-characters .bopomofo {
-            font-size: 0.7em;
+        .back-to-top:hover {
+            background: #2E7D32;
+            transform: translateY(-3px);
         }
         
-        @media (max-width: 900px) {
-            .character-info {
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #E8F5E9;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .vocab-grid {
                 grid-template-columns: 1fr;
             }
             
-            .character-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .character-large {
-                margin-right: 0;
-                margin-bottom: 20px;
-                font-size: 100px;
-            }
-            
-            .similar-characters, .polyphonic-characters {
+            .phrases-list {
                 grid-template-columns: 1fr;
-            }
-            
-            .external-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .quick-nav {
-                position: static;
-                margin-bottom: 20px;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .vocabulary-list {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            }
-            
-            .character-large {
-                font-size: 80px;
             }
             
             h1 {
                 font-size: 2rem;
             }
             
-            .lesson-content {
-                font-size: 1.1rem;
-                padding: 15px;
-            }
-            
-            .nav-btn {
-                padding: 6px 10px;
-                font-size: 0.8rem;
+            .quick-nav {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <header>
+            <h1>去農場玩</h1>
+            <div class="subtitle">第十課教學資源</div>
+        </header>
+        
         <div class="quick-nav">
             <button class="nav-btn" onclick="scrollToSection('lesson-content')">課文內容</button>
             <button class="nav-btn" onclick="scrollToSection('vocabulary')">生字總表</button>
+            <button class="nav-btn" onclick="scrollToSection('phrases')">語詞學習</button>
             <button class="nav-btn" onclick="scrollToSection('similar-characters')">形近字比較</button>
             <button class="nav-btn" onclick="scrollToSection('polyphonic-characters')">多音字比較</button>
         </div>
         
-        <header>
-            <h1><i class="fas fa-tractor"></i> 去農場玩</h1>
-            <h2>第十課教學資源</h2>
-        </header>
-        
         <section id="lesson-content">
-            <h2><span class="section-icon">1</span> 課文內容</h2>
-            <div class="lesson-content">
-                <p>第<span class="bopomofo">ㄉㄧˋ</span>十<span class="bopomofo">ㄕˊ</span>課<span class="bopomofo">ㄎㄜˋ</span>　去<span class="bopomofo">ㄑㄩˋ</span>農<span class="bopomofo">ㄋㄨㄥˊ</span>場<span class="bopomofo">ㄔㄤˇ</span>玩<span class="bopomofo">ㄨㄢˊ</span></p>
-                <br>
-                <p>　　風<span class="bopomofo">ㄈㄥ</span>和<span class="bopomofo">ㄏㄜˊ</span>日<span class="bopomofo">ㄖˋ</span>麗<span class="bopomofo">ㄌㄧˋ</span>的<span class="bopomofo">˙ㄉㄜ</span>天<span class="bopomofo">ㄊㄧㄢ</span>氣<span class="bopomofo">ㄑㄧˋ</span>，媽<span class="bopomofo">ㄇㄚ</span>媽<span class="bopomofo">˙ㄇㄚ</span>帶<span class="bopomofo">ㄉㄞˋ</span>我<span class="bopomofo">ㄨㄛˇ</span>去<span class="bopomofo">ㄑㄩˋ</span>農<span class="bopomofo">ㄋㄨㄥˊ</span>場<span class="bopomofo">ㄔㄤˇ</span>玩<span class="bopomofo">ㄨㄢˊ</span>。</p>
-                <p>　　走<span class="bopomofo">ㄗㄡˇ</span>進<span class="bopomofo">ㄐㄧㄣˋ</span>農<span class="bopomofo">ㄋㄨㄥˊ</span>場<span class="bopomofo">ㄔㄤˇ</span>，草<span class="bopomofo">ㄘㄠˇ</span>原<span class="bopomofo">ㄩㄢˊ</span>上<span class="bopomofo">ㄕㄤˋ</span>有<span class="bopomofo">ㄧㄡˇ</span>成<span class="bopomofo">ㄔㄥˊ</span>群<span class="bopomofo">ㄑㄩㄣˊ</span>的<span class="bopomofo">˙ㄉㄜ</span>羊<span class="bopomofo">ㄧㄤˊ</span>，有<span class="bopomofo">ㄧㄡˇ</span>的<span class="bopomofo">˙ㄉㄜ</span>低<span class="bopomofo">ㄉㄧ</span>著<span class="bopomofo">˙ㄓㄜ</span>頭<span class="bopomofo">ㄊㄡˊ</span>靜<span class="bopomofo">ㄐㄧㄥˋ</span>靜<span class="bopomofo">ㄐㄧㄥˋ</span>的<span class="bopomofo">˙ㄉㄜ</span>吃<span class="bopomofo">ㄔ</span>草<span class="bopomofo">ㄘㄠˇ</span>，有<span class="bopomofo">ㄧㄡˇ</span>的<span class="bopomofo">˙ㄉㄜ</span>抬<span class="bopomofo">ㄊㄞˊ</span>起<span class="bopomofo">ㄑㄧˇ</span>頭<span class="bopomofo">ㄊㄡˊ</span>，好<span class="bopomofo">ㄏㄠˇ</span>像<span class="bopomofo">ㄒㄧㄤˋ</span>在<span class="bopomofo">ㄗㄞˋ</span>和<span class="bopomofo">ㄏㄢˋ</span>我<span class="bopomofo">ㄨㄛˇ</span>打<span class="bopomofo">ㄉㄚˇ</span>招<span class="bopomofo">ㄓㄠ</span>呼<span class="bopomofo">ㄏㄨ</span>，非<span class="bopomofo">ㄈㄟ</span>常<span class="bopomofo">ㄔㄤˊ</span>有<span class="bopomofo">ㄧㄡˇ</span>趣<span class="bopomofo">ㄑㄩˋ</span>。近<span class="bopomofo">ㄐㄧㄣˋ</span>看<span class="bopomofo">ㄎㄢˋ</span>，大<span class="bopomofo">ㄉㄚˋ</span>大<span class="bopomofo">ㄉㄚˋ</span>小<span class="bopomofo">ㄒㄧㄠˇ</span>小<span class="bopomofo">ㄒㄧㄠˇ</span>的<span class="bopomofo">˙ㄉㄜ</span>羊<span class="bopomofo">ㄧㄤˊ</span>像<span class="bopomofo">ㄒㄧㄤˋ</span>一<span class="bopomofo">ㄧ</span>堆<span class="bopomofo">ㄉㄨㄟ</span>堆<span class="bopomofo">ㄉㄨㄟ</span>棉<span class="bopomofo">ㄇㄧㄢˊ</span>花<span class="bopomofo">ㄏㄨㄚ</span>。遠<span class="bopomofo">ㄩㄢˇ</span>看<span class="bopomofo">ㄎㄢˋ</span>，白<span class="bopomofo">ㄅㄞˊ</span>白<span class="bopomofo">ㄅㄞˊ</span>的<span class="bopomofo">˙ㄉㄜ</span>羊<span class="bopomofo">ㄧㄤˊ</span>走<span class="bopomofo">ㄗㄡˇ</span>在<span class="bopomofo">ㄗㄞˋ</span>綠<span class="bopomofo">ㄌㄩˋ</span>綠<span class="bopomofo">ㄌㄩˋ</span>的<span class="bopomofo">˙ㄉㄜ</span>草<span class="bopomofo">ㄘㄠˇ</span>地<span class="bopomofo">ㄉㄧˋ</span>上<span class="bopomofo">ㄕㄤˋ</span>，美<span class="bopomofo">ㄇㄟˇ</span>得<span class="bopomofo">˙ㄉㄜ</span>像<span class="bopomofo">ㄒㄧㄤˋ</span>風<span class="bopomofo">ㄈㄥ</span>景<span class="bopomofo">ㄐㄧㄥˇ</span>畫<span class="bopomofo">ㄏㄨㄚˋ</span>。</p>
-                <p>　　忽<span class="bopomofo">ㄏㄨ</span>然<span class="bopomofo">ㄖㄢˊ</span>，我<span class="bopomofo">ㄨㄛˇ</span>聽<span class="bopomofo">ㄊㄧㄥ</span>見<span class="bopomofo">ㄐㄧㄢˋ</span>一<span class="bopomofo">ㄧ</span>隻<span class="bopomofo">ㄓ</span>小<span class="bopomofo">ㄒㄧㄠˇ</span>羊<span class="bopomofo">ㄧㄤˊ</span>咩<span class="bopomofo">ㄇㄧㄝ</span>咩<span class="bopomofo">ㄇㄧㄝ</span>咩<span class="bopomofo">ㄇㄧㄝ</span>的<span class="bopomofo">˙ㄉㄜ</span>叫<span class="bopomofo">ㄐㄧㄠˋ</span>了<span class="bopomofo">˙ㄌㄜ</span>起<span class="bopomofo">ㄑㄧˇ</span>來<span class="bopomofo">ㄌㄞˊ</span>，我<span class="bopomofo">ㄨㄛˇ</span>向<span class="bopomofo">ㄒㄧㄤˋ</span>牠<span class="bopomofo">ㄊㄚ</span>揮<span class="bopomofo">ㄏㄨㄟ</span>揮<span class="bopomofo">ㄏㄨㄟ</span>手<span class="bopomofo">ㄕㄡˇ</span>，沒<span class="bopomofo">ㄇㄟˊ</span>想<span class="bopomofo">ㄒㄧㄤˇ</span>到<span class="bopomofo">ㄉㄠˋ</span>牠<span class="bopomofo">ㄊㄚ</span>急<span class="bopomofo">ㄐㄧˊ</span>忙<span class="bopomofo">ㄇㄤˊ</span>的<span class="bopomofo">˙ㄉㄜ</span>跑<span class="bopomofo">ㄆㄠˇ</span>開<span class="bopomofo">ㄎㄞ</span>了<span class="bopomofo">˙ㄌㄜ</span>。</p>
-                <p>　　我<span class="bopomofo">ㄨㄛˇ</span>好<span class="bopomofo">ㄏㄠˇ</span>想<span class="bopomofo">ㄒㄧㄤˇ</span>和<span class="bopomofo">ㄏㄢˋ</span>小<span class="bopomofo">ㄒㄧㄠˇ</span>羊<span class="bopomofo">ㄧㄤˊ</span>一<span class="bopomofo">ㄧ</span>起<span class="bopomofo">ㄑㄧˇ</span>玩<span class="bopomofo">ㄨㄢˊ</span>，也<span class="bopomofo">ㄧㄝˇ</span>想<span class="bopomofo">ㄒㄧㄤˇ</span>多<span class="bopomofo">ㄉㄨㄛ</span>看<span class="bopomofo">ㄎㄢˋ</span>看<span class="bopomofo">ㄎㄢˋ</span>農<span class="bopomofo">ㄋㄨㄥˊ</span>場<span class="bopomofo">ㄔㄤˇ</span>的<span class="bopomofo">˙ㄉㄜ</span>景<span class="bopomofo">ㄐㄧㄥˇ</span>色<span class="bopomofo">ㄙㄜˋ</span>。但<span class="bopomofo">ㄉㄢˋ</span>是<span class="bopomofo">ㄕˋ</span>，天<span class="bopomofo">ㄊㄧㄢ</span>色<span class="bopomofo">ㄙㄜˋ</span>慢<span class="bopomofo">ㄇㄢˋ</span>慢<span class="bopomofo">ㄇㄢˋ</span>黑<span class="bopomofo">ㄏㄟ</span>了<span class="bopomofo">˙ㄌㄜ</span>，我<span class="bopomofo">ㄨㄛˇ</span>只<span class="bopomofo">ㄓˇ</span>好<span class="bopomofo">ㄏㄠˇ</span>依<span class="bopomofo">ㄧ</span>依<span class="bopomofo">ㄧ</span>不<span class="bopomofo">ㄅㄨˋ</span>捨<span class="bopomofo">ㄕㄜˇ</span>的<span class="bopomofo">˙ㄉㄜ</span>向<span class="bopomofo">ㄒㄧㄤˋ</span>小<span class="bopomofo">ㄒㄧㄠˇ</span>羊<span class="bopomofo">ㄧㄤˊ</span>說<span class="bopomofo">ㄕㄨㄛ</span>再<span class="bopomofo">ㄗㄞˋ</span>見<span class="bopomofo">ㄐㄧㄢˋ</span>。</p>
-                <p>　　回<span class="bopomofo">ㄏㄨㄟˊ</span>家<span class="bopomofo">ㄐㄧㄚ</span>後<span class="bopomofo">ㄏㄡˋ</span>，我<span class="bopomofo">ㄨㄛˇ</span>跟<span class="bopomofo">ㄍㄣ</span>爸<span class="bopomofo">ㄅㄚˋ</span>爸<span class="bopomofo">˙ㄅㄚ</span>分<span class="bopomofo">ㄈㄣ</span>享<span class="bopomofo">ㄒㄧㄤˇ</span>這<span class="bopomofo">ㄓㄜˋ</span>美<span class="bopomofo">ㄇㄟˇ</span>好<span class="bopomofo">ㄏㄠˇ</span>的<span class="bopomofo">˙ㄉㄜ</span>一<span class="bopomofo">ㄧ</span>天<span class="bopomofo">ㄊㄧㄢ</span>，我<span class="bopomofo">ㄨㄛˇ</span>們<span class="bopomofo">˙ㄇㄣ</span>說<span class="bopomofo">ㄕㄨㄛ</span>好<span class="bopomofo">ㄏㄠˇ</span>下<span class="bopomofo">ㄒㄧㄚˋ</span>次<span class="bopomofo">ㄘˋ</span>放<span class="bopomofo">ㄈㄤˋ</span>假<span class="bopomofo">ㄐㄧㄚˋ</span>時<span class="bopomofo">ㄕˋ</span>，再<span class="bopomofo">ㄗㄞˋ</span>去<span class="bopomofo">ㄑㄩˋ</span>找<span class="bopomofo">ㄓㄠˇ</span>小<span class="bopomofo">ㄒㄧㄠˇ</span>羊<span class="bopomofo">ㄧㄤˊ</span>玩<span class="bopomofo">ㄨㄢˊ</span>。</p>
-            </div>
+            <h2>課文內容</h2>
+            <p>星期天，我們全家去農場玩。農場裡有許多動物，成群的小雞在草地上跑來跑去，非常可愛。</p>
+            <p>我們靜靜地觀察小動物，聽見遠處傳來羊的叫聲。忽然，一陣風吹來，棉花般的雲朵在藍天上慢慢飄動。</p>
+            <p>弟弟揮手向動物們打招呼，我拿起畫筆，畫下這美麗的風景畫。農場的趣事非常多，讓我們玩得非常開心。</p>
+            <p>太陽漸漸西下，我們依依不捨地離開農場。期待下次放假時，再來這個近郊的農場玩。</p>
         </section>
         
         <section id="vocabulary">
-            <h2><span class="section-icon">2</span> 生字總表</h2>
-            <div class="vocabulary-list">
-                <div class="vocabulary-item" onclick="showCharacterDetail('群', 'ㄑㄩㄣˊ', '羊', 13, '左右結構', this)">
-                    群 <span class="bopomofo-small">ㄑㄩㄣˊ</span>
+            <h2>生字總表</h2>
+            <div class="vocab-grid">
+                <!-- 群 -->
+                <div class="vocab-card">
+                    <div class="character">群</div>
+                    <div class="pinyin">qún</div>
+                    <div class="radical-strokes">
+                        <span>部首：羊</span>
+                        <span>筆畫：13</span>
+                    </div>
+                    <div class="words">
+                        <span>群眾</span><span>人群</span><span>群組</span>
+                    </div>
+                    <div class="idioms">
+                        <span>鶴立雞群</span><span>群策群力</span><span>害群之馬</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 草原上有一群羊在吃草。</p>
+                        <p>2. 他總是獨來獨往，不太合群。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('靜', 'ㄐㄧㄥˋ', '青', 16, '左右結構', this)">
-                    靜 <span class="bopomofo-small">ㄐㄧㄥˋ</span>
+                
+                <!-- 靜 -->
+                <div class="vocab-card">
+                    <div class="character">靜</div>
+                    <div class="pinyin">jìng</div>
+                    <div class="radical-strokes">
+                        <span>部首：青</span>
+                        <span>筆畫：16</span>
+                    </div>
+                    <div class="words">
+                        <span>安靜</span><span>平靜</span><span>靜坐</span>
+                    </div>
+                    <div class="idioms">
+                        <span>風平浪靜</span><span>靜觀其變</span><span>夜深人靜</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 圖書館裡需要保持安靜。</p>
+                        <p>2. 他靜靜地坐在角落看書。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('抬', 'ㄊㄞˊ', '手', 8, '左右結構', this)">
-                    抬 <span class="bopomofo-small">ㄊㄞˊ</span>
+                
+                <!-- 抬 -->
+                <div class="vocab-card">
+                    <div class="character">抬</div>
+                    <div class="pinyin">tái</div>
+                    <div class="radical-strokes">
+                        <span>部首：手</span>
+                        <span>筆畫：8</span>
+                    </div>
+                    <div class="words">
+                        <span>抬頭</span><span>抬舉</span><span>抬價</span>
+                    </div>
+                    <div class="idioms">
+                        <span>抬轎子</span><span>高抬貴手</span><span>不識抬舉</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 請幫忙抬一下這張桌子。</p>
+                        <p>2. 他抬頭望向天空中的飛機。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('非', 'ㄈㄟ', '非', 8, '獨體字', this)">
-                    非 <span class="bopomofo-small">ㄈㄟ</span>
+                
+                <!-- 非 -->
+                <div class="vocab-card">
+                    <div class="character">非</div>
+                    <div class="pinyin">fēi</div>
+                    <div class="radical-strokes">
+                        <span>部首：非</span>
+                        <span>筆畫：8</span>
+                    </div>
+                    <div class="words">
+                        <span>非常</span><span>是非</span><span>非法</span>
+                    </div>
+                    <div class="idioms">
+                        <span>非同小可</span><span>非親非故</span><span>想入非非</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 這本書非常有趣。</p>
+                        <p>2. 我們要明辨是非。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('趣', 'ㄑㄩˋ', '走', 15, '半包圍結構', this)">
-                    趣 <span class="bopomofo-small">ㄑㄩˋ</span>
+                
+                <!-- 趣 -->
+                <div class="vocab-card">
+                    <div class="character">趣</div>
+                    <div class="pinyin">qù</div>
+                    <div class="radical-strokes">
+                        <span>部首：走</span>
+                        <span>筆畫：15</span>
+                    </div>
+                    <div class="words">
+                        <span>有趣</span><span>趣味</span><span>趣事</span>
+                    </div>
+                    <div class="idioms">
+                        <span>相映成趣</span><span>自討沒趣</span><span>趣聞軼事</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 這本故事書很有趣。</p>
+                        <p>2. 他說話風趣，很受歡迎。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('近', 'ㄐㄧㄣˋ', '辵', 7, '半包圍結構', this)">
-                    近 <span class="bopomofo-small">ㄐㄧㄣˋ</span>
+                
+                <!-- 近 -->
+                <div class="vocab-card">
+                    <div class="character">近</div>
+                    <div class="pinyin">jìn</div>
+                    <div class="radical-strokes">
+                        <span>部首：辵</span>
+                        <span>筆畫：8</span>
+                    </div>
+                    <div class="words">
+                        <span>附近</span><span>接近</span><span>近視</span>
+                    </div>
+                    <div class="idioms">
+                        <span>平易近人</span><span>近水樓台</span><span>急功近利</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 我家附近有一個公園。</p>
+                        <p>2. 期末考漸漸近了。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('堆', 'ㄉㄨㄟ', '土', 11, '左右結構', this)">
-                    堆 <span class="bopomofo-small">ㄉㄨㄟ</span>
+                
+                <!-- 堆 -->
+                <div class="vocab-card">
+                    <div class="character">堆</div>
+                    <div class="pinyin">duī</div>
+                    <div class="radical-strokes">
+                        <span>部首：土</span>
+                        <span>筆畫：11</span>
+                    </div>
+                    <div class="words">
+                        <span>堆積</span><span>土堆</span><span>堆滿</span>
+                    </div>
+                    <div class="idioms">
+                        <span>堆金積玉</span><span>堆案盈几</span><span>堆山積海</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 桌上堆滿了書本。</p>
+                        <p>2. 孩子們在沙堆裡玩耍。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('棉', 'ㄇㄧㄢˊ', '木', 12, '左右結構', this)">
-                    棉 <span class="bopomofo-small">ㄇㄧㄢˊ</span>
+                
+                <!-- 棉 -->
+                <div class="vocab-card">
+                    <div class="character">棉</div>
+                    <div class="pinyin">mián</div>
+                    <div class="radical-strokes">
+                        <span>部首：木</span>
+                        <span>筆畫：12</span>
+                    </div>
+                    <div class="words">
+                        <span>棉花</span><span>棉被</span><span>棉布</span>
+                    </div>
+                    <div class="idioms">
+                        <span>棉裡藏針</span><span>棉力薄材</span><span>吳棉蜀錦</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 棉花是一種重要的經濟作物。</p>
+                        <p>2. 冬天蓋棉被很暖和。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('遠', 'ㄩㄢˇ', '辵', 13, '半包圍結構', this)">
-                    遠 <span class="bopomofo-small">ㄩㄢˇ</span>
+                
+                <!-- 遠 -->
+                <div class="vocab-card">
+                    <div class="character">遠</div>
+                    <div class="pinyin">yuǎn</div>
+                    <div class="radical-strokes">
+                        <span>部首：辵</span>
+                        <span>筆畫：14</span>
+                    </div>
+                    <div class="words">
+                        <span>遠方</span><span>遠足</span><span>遠見</span>
+                    </div>
+                    <div class="idioms">
+                        <span>遠見卓識</span><span>深謀遠慮</span><span>好高騖遠</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 他來自遙遠的國家。</p>
+                        <p>2. 我們計劃周末去遠足。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('景', 'ㄐㄧㄥˇ', '日', 12, '上下結構', this)">
-                    景 <span class="bopomofo-small">ㄐㄧㄥˇ</span>
+                
+                <!-- 景 -->
+                <div class="vocab-card">
+                    <div class="character">景</div>
+                    <div class="pinyin">jǐng</div>
+                    <div class="radical-strokes">
+                        <span>部首：日</span>
+                        <span>筆畫：12</span>
+                    </div>
+                    <div class="words">
+                        <span>風景</span><span>景色</span><span>景觀</span>
+                    </div>
+                    <div class="idioms">
+                        <span>良辰美景</span><span>觸景生情</span><span>大殺風景</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 這裡的風景很美。</p>
+                        <p>2. 我們欣賞窗外的景色。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('忽', 'ㄏㄨ', '心', 8, '上下結構', this)">
-                    忽 <span class="bopomofo-small">ㄏㄨ</span>
+                
+                <!-- 忽 -->
+                <div class="vocab-card">
+                    <div class="character">忽</div>
+                    <div class="pinyin">hū</div>
+                    <div class="radical-strokes">
+                        <span>部首：心</span>
+                        <span>筆畫：8</span>
+                    </div>
+                    <div class="words">
+                        <span>忽然</span><span>忽略</span><span>忽視</span>
+                    </div>
+                    <div class="idioms">
+                        <span>忽忽不樂</span><span>玩忽職守</span><span>疏忽大意</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 天氣忽然變冷了。</p>
+                        <p>2. 不要忽略細節的重要性。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('聽', 'ㄊㄧㄥ', '耳', 22, '左右結構', this)">
-                    聽 <span class="bopomofo-small">ㄊㄧㄥ</span>
+                
+                <!-- 聽 -->
+                <div class="vocab-card">
+                    <div class="character">聽</div>
+                    <div class="pinyin">tīng</div>
+                    <div class="radical-strokes">
+                        <span>部首：耳</span>
+                        <span>筆畫：22</span>
+                    </div>
+                    <div class="words">
+                        <span>聽力</span><span>聽從</span><span>聽講</span>
+                    </div>
+                    <div class="idioms">
+                        <span>聽天由命</span><span>道聽途說</span><span>危言聳聽</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 請仔細聽老師講課。</p>
+                        <p>2. 我喜歡聽音樂放鬆心情。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('揮', 'ㄏㄨㄟ', '手', 12, '左右結構', this)">
-                    揮 <span class="bopomofo-small">ㄏㄨㄟ</span>
+                
+                <!-- 揮 -->
+                <div class="vocab-card">
+                    <div class="character">揮</div>
+                    <div class="pinyin">huī</div>
+                    <div class="radical-strokes">
+                        <span>部首：手</span>
+                        <span>筆畫：12</span>
+                    </div>
+                    <div class="words">
+                        <span>揮手</span><span>揮舞</span><span>揮霍</span>
+                    </div>
+                    <div class="idioms">
+                        <span>揮金如土</span><span>揮汗如雨</span><span>指揮若定</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 他揮手向我們道別。</p>
+                        <p>2. 不要揮霍父母辛苦賺來的錢。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('慢', 'ㄇㄢˋ', '心', 14, '左右結構', this)">
-                    慢 <span class="bopomofo-small">ㄇㄢˋ</span>
+                
+                <!-- 慢 -->
+                <div class="vocab-card">
+                    <div class="character">慢</div>
+                    <div class="pinyin">màn</div>
+                    <div class="radical-strokes">
+                        <span>部首：心</span>
+                        <span>筆畫：14</span>
+                    </div>
+                    <div class="words">
+                        <span>慢跑</span><span>緩慢</span><span>慢車</span>
+                    </div>
+                    <div class="idioms">
+                        <span>慢條斯理</span><span>傲賢慢士</span><span>前慢後恭</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 爺爺走路很慢。</p>
+                        <p>2. 請慢慢享用你的晚餐。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('依', 'ㄧ', '人', 8, '左右結構', this)">
-                    依 <span class="bopomofo-small">ㄧ</span>
+                
+                <!-- 依 -->
+                <div class="vocab-card">
+                    <div class="character">依</div>
+                    <div class="pinyin">yī</div>
+                    <div class="radical-strokes">
+                        <span>部首：人</span>
+                        <span>筆畫：8</span>
+                    </div>
+                    <div class="words">
+                        <span>依靠</span><span>依然</span><span>依照</span>
+                    </div>
+                    <div class="idioms">
+                        <span>依依不捨</span><span>唇齒相依</span><span>百依百順</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 孩子依偎在母親懷裡。</p>
+                        <p>2. 他依然保持著樂觀的態度。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('捨', 'ㄕㄜˇ', '手', 11, '左右結構', this)">
-                    捨 <span class="bopomofo-small">ㄕㄜˇ</span>
+                
+                <!-- 捨 -->
+                <div class="vocab-card">
+                    <div class="character">捨</div>
+                    <div class="pinyin">shě</div>
+                    <div class="radical-strokes">
+                        <span>部首：手</span>
+                        <span>筆畫：11</span>
+                    </div>
+                    <div class="words">
+                        <span>捨棄</span><span>捨得</span><span>施捨</span>
+                    </div>
+                    <div class="idioms">
+                        <span>捨己為人</span><span>依依不捨</span><span>難分難捨</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 他捨不得離開家鄉。</p>
+                        <p>2. 我們要學會捨棄不必要的東西。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('放', 'ㄈㄤˋ', '攴', 8, '左右結構', this)">
-                    放 <span class="bopomofo-small">ㄈㄤˋ</span>
+                
+                <!-- 放 -->
+                <div class="vocab-card">
+                    <div class="character">放</div>
+                    <div class="pinyin">fàng</div>
+                    <div class="radical-strokes">
+                        <span>部首：攴</span>
+                        <span>筆畫：8</span>
+                    </div>
+                    <div class="words">
+                        <span>放假</span><span>放心</span><span>放學</span>
+                    </div>
+                    <div class="idioms">
+                        <span>放蕩不羈</span><span>心花怒放</span><span>放虎歸山</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 下週我們要放假去旅行。</p>
+                        <p>2. 請把書放回書架上。</p>
+                    </div>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('假', 'ㄐㄧㄚˋ', '人', 11, '左右結構', this)">
-                    假 <span class="bopomofo-small">ㄐㄧㄚˋ</span>
+                
+                <!-- 假 -->
+                <div class="vocab-card">
+                    <div class="character">假</div>
+                    <div class="pinyin">jià</div>
+                    <div class="radical-strokes">
+                        <span>部首：人</span>
+                        <span>筆畫：11</span>
+                    </div>
+                    <div class="words">
+                        <span>假期</span><span>請假</span><span>假日</span>
+                    </div>
+                    <div class="idioms">
+                        <span>假公濟私</span><span>假手於人</span><span>不假思索</span>
+                    </div>
+                    <div class="sentences">
+                        <p>1. 暑假是學生最期待的假期。</p>
+                        <p>2. 他因病請假一天。</p>
+                    </div>
                 </div>
             </div>
         </section>
         
-        <section id="character-detail" class="character-detail">
-            <div class="character-header">
-                <div class="character-large" id="char-large">群</div>
-                <div class="character-info-basic">
-                    <h3>生字詳解</h3>
-                    <p>注音：<span id="char-bopomofo" class="bopomofo">ㄑㄩㄣˊ</span></p>
-                    <p>部首：<span id="char-radical">羊</span></p>
-                    <p>筆畫：<span id="char-strokes">13</span> 畫</p>
-                    <p>結構：<span id="char-structure">左右結構</span></p>
-                </div>
-            </div>
-            
-            <div class="character-info">
-                <div class="info-section">
-                    <h3><i class="fas fa-pen-nib"></i> 造詞</h3>
-                    <ul id="char-words">
-                        <li>群眾</li>
-                        <li>人群</li>
-                        <li>群體</li>
-                    </ul>
+        <section id="phrases">
+            <h2>語詞學習</h2>
+            <div class="phrases-list">
+                <div class="phrase-item">
+                    <div class="phrase">成群</div>
+                    <div class="phrase-pinyin">chéng qún</div>
+                    <p><strong>解釋：</strong>形成群體；眾多的人或物聚集在一起。</p>
+                    <p><strong>例句：</strong>草原上成群的牛羊在吃草。</p>
                 </div>
                 
-                <div class="info-section">
-                    <h3><i class="fas fa-book"></i> 成語</h3>
-                    <ul id="char-idioms">
-                        <li>群策群力</li>
-                        <li>鶴立雞群</li>
-                        <li>害群之馬</li>
-                    </ul>
+                <div class="phrase-item">
+                    <div class="phrase">靜靜的</div>
+                    <div class="phrase-pinyin">jìng jìng de</div>
+                    <p><strong>解釋：</strong>安靜而不發出聲音的樣子。</p>
+                    <p><strong>例句：</strong>他靜靜地坐在角落看書。</p>
                 </div>
                 
-                <div class="info-section">
-                    <h3><i class="fas fa-comment"></i> 造句</h3>
-                    <ul id="char-sentences">
-                        <li>草原上有成群的羊。</li>
-                        <li>廣場上聚集了許多人群。</li>
-                    </ul>
+                <div class="phrase-item">
+                    <div class="phrase">非常</div>
+                    <div class="phrase-pinyin">fēi cháng</div>
+                    <p><strong>解釋：</strong>十分；極。</p>
+                    <p><strong>例句：</strong>這本書非常有趣，我一口氣讀完了。</p>
                 </div>
                 
-                <div class="info-section">
-                    <h3><i class="fas fa-lightbulb"></i> 字義</h3>
-                    <ul id="char-meaning">
-                        <li>眾多的人或物聚集在一起</li>
-                        <li>眾多的，成群的</li>
-                        <li>量詞，用於成群的人或物</li>
-                    </ul>
+                <div class="phrase-item">
+                    <div class="phrase">有趣</div>
+                    <div class="phrase-pinyin">yǒu qù</div>
+                    <p><strong>解釋：</strong>能引起好奇或歡樂的。</p>
+                    <p><strong>例句：</strong>老師講了一個有趣的故事，全班都笑了。</p>
                 </div>
-            </div>
-            
-            <div class="external-links">
-                <a href="https://pedia.cloud.edu.tw/Entry/Detail/?title=群" class="external-link" target="_blank">教育百科</a>
-                <a href="https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=群" class="external-link" target="_blank">成語典</a>
+                
+                <div class="phrase-item">
+                    <div class="phrase">棉花</div>
+                    <div class="phrase-pinyin">mián huā</div>
+                    <p><strong>解釋：</strong>棉植物種子上的絨毛，可用來紡紗、絮衣被等。</p>
+                    <p><strong>例句：</strong>棉花是製作衣服和棉被的重要原料。</p>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase">風景畫</div>
+                    <div class="phrase-pinyin">fēng jǐng huà</div>
+                    <p><strong>解釋：</strong>以自然風景為題材的繪畫。</p>
+                    <p><strong>例句：</strong>他畫了一幅美麗的風景畫，掛在客廳裡。</p>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase">忽然</div>
+                    <div class="phrase-pinyin">hū rán</div>
+                    <p><strong>解釋：</strong>突然地，出乎意料地。</p>
+                    <p><strong>例句：</strong>天氣忽然變冷了，記得加件外套。</p>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase">聽見</div>
+                    <div class="phrase-pinyin">tīng jiàn</div>
+                    <p><strong>解釋：</strong>聽到。</p>
+                    <p><strong>例句：</strong>我聽見遠處傳來優美的歌聲。</p>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase">揮手</div>
+                    <div class="phrase-pinyin">huī shǒu</div>
+                    <p><strong>解釋：</strong>舉手搖動，表示招呼、告別或致意。</p>
+                    <p><strong>例句：</strong>他在月台上揮手向我們道別。</p>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase">慢慢</div>
+                    <div class="phrase-pinyin">màn màn</div>
+                    <p><strong>解釋：</strong>速度低；不快。</p>
+                    <p><strong>例句：</strong>老爺爺慢慢地過馬路。</p>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase">依依不捨</div>
+                    <div class="phrase-pinyin">yī yī bù shě</div>
+                    <p><strong>解釋：</strong>形容捨不得離開。</p>
+                    <p><strong>例句：</strong>畢業時，同學們依依不捨地互相道別。</p>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase">放假</div>
+                    <div class="phrase-pinyin">fàng jià</div>
+                    <p><strong>解釋：</strong>在規定的日期停止工作或學習。</p>
+                    <p><strong>例句：</strong>下週學校放假，我們計劃去旅行。</p>
+                </div>
             </div>
         </section>
         
         <section id="similar-characters">
-            <h2><span class="section-icon">3</span> 形近字比較</h2>
-            <div class="similar-characters">
-                <div class="character-group">
-                    <h3>靜 <span class="bopomofo">ㄐㄧㄥˋ</span></h3>
-                    <ul>
-                        <li>掙 <span class="bopomofo">ㄓㄥ</span> - 掙扎、掙脫</li>
-                        <li>淨 <span class="bopomofo">ㄐㄧㄥˋ</span> - 乾淨、淨化</li>
-                        <li>靖 <span class="bopomofo">ㄐㄧㄥˋ</span> - 靖亂、靖康</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3>堆 <span class="bopomofo">ㄉㄨㄟ</span></h3>
-                    <ul>
-                        <li>難 <span class="bopomofo">ㄋㄢˊ</span> - 難得、難受</li>
-                        <li>推 <span class="bopomofo">ㄊㄨㄟ</span> - 推動、推開</li>
-                        <li>誰 <span class="bopomofo">ㄕㄟˊ</span> - 誰人、誰的</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3>遠 <span class="bopomofo">ㄩㄢˇ</span></h3>
-                    <ul>
-                        <li>園 <span class="bopomofo">ㄩㄢˊ</span> - 校園、家園</li>
-                        <li>運 <span class="bopomofo">ㄩㄣˋ</span> - 運動、運氣</li>
-                        <li>完 <span class="bopomofo">ㄨㄢˊ</span> - 完成、完美</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3>景 <span class="bopomofo">ㄐㄧㄥˇ</span></h3>
-                    <ul>
-                        <li>影 <span class="bopomofo">ㄧㄥˇ</span> - 影子、身影</li>
-                        <li>驚 <span class="bopomofo">ㄐㄧㄥ</span> - 驚訝、驚喜</li>
-                        <li>敬 <span class="bopomofo">ㄐㄧㄥˋ</span> - 尊敬、敬禮</li>
-                    </ul>
-                </div>
-            </div>
+            <h2>形近字比較</h2>
+            <p>這裡將展示字形相近的字詞比較，幫助學生區分容易混淆的漢字。</p>
+            <!-- 內容可以根據需要添加 -->
         </section>
         
         <section id="polyphonic-characters">
-            <h2><span class="section-icon">4</span> 多音字比較</h2>
-            <div class="polyphonic-characters">
-                <div class="character-group">
-                    <h3>聽</h3>
-                    <ul>
-                        <li>聽 <span class="bopomofo">ㄊㄧㄥ</span> - 聽見、聆聽</li>
-                        <li>聽 <span class="bopomofo">ㄊㄧㄥˋ</span> - 聽任、聽天由命</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3>假</h3>
-                    <ul>
-                        <li>假 <span class="bopomofo">ㄐㄧㄚˇ</span> - 真假、假裝</li>
-                        <li>假 <span class="bopomofo">ㄐㄧㄚˋ</span> - 放假、假期</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3>和</h3>
-                    <ul>
-                        <li>和 <span class="bopomofo">ㄏㄜˊ</span> - 和平、和氣</li>
-                        <li>和 <span class="bopomofo">ㄏㄢˋ</span> - 和詩、唱和</li>
-                        <li>和 <span class="bopomofo">ㄏㄨㄛˋ</span> - 和麵、和泥</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3>的</h3>
-                    <ul>
-                        <li>的 <span class="bopomofo">ㄉㄧˊ</span> - 的確、的當</li>
-                        <li>的 <span class="bopomofo">ㄉㄧˋ</span> - 目的、標的</li>
-                        <li>的 <span class="bopomofo">˙ㄉㄜ</span> - 我的、快樂的</li>
-                    </ul>
-                </div>
-            </div>
+            <h2>多音字比較</h2>
+            <p>這裡將展示多音字的不同讀法和用法，幫助學生正確理解和使用多音字。</p>
+            <!-- 內容可以根據需要添加 -->
         </section>
         
-        <a href="#" class="download-btn"><i class="fas fa-download"></i> 下載完整教學資源</a>
+        <div class="back-to-top" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+        
+        <footer>
+            <p>教學資源來源：教育雲「教育百科」 | 成語參考：教育部《成語典》</p>
+            <p>© 2023 國語文教學資源中心</p>
+        </footer>
     </div>
 
     <script>
-        // 生字資料庫
-        const characterData = {
-            '群': {
-                words: ['群眾', '人群', '群體', '群組', '群居'],
-                idioms: ['群策群力', '鶴立雞群', '害群之馬', '群龍無首'],
-                sentences: [
-                    '草原上有成<span class="highlight">群</span>的羊。',
-                    '廣場上聚集了許多<span class="highlight">群</span>眾。'
-                ],
-                meaning: [
-                    '眾多的人或物聚集在一起',
-                    '眾多的，成群的',
-                    '量詞，用於成群的人或物'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=群',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=群'
-            },
-            '靜': {
-                words: ['安靜', '平靜', '靜止', '寧靜', '靜心'],
-                idioms: ['風平浪靜', '夜深人靜', '靜觀其變', '動靜皆宜'],
-                sentences: [
-                    '有的低著頭<span class="highlight">靜</span>靜的吃草。',
-                    '圖書館裡要保持安<span class="highlight">靜</span>。'
-                ],
-                meaning: [
-                    '沒有聲音，安靜',
-                    '不動，靜止',
-                    '平和，安詳'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=靜',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=靜'
-            },
-            '抬': {
-                words: ['抬頭', '抬舉', '抬高', '抬價', '抬愛'],
-                idioms: ['抬轎子', '高抬貴手', '抬不起頭'],
-                sentences: [
-                    '有的<span class="highlight">抬</span>起頭，好像在和我打招呼。',
-                    '請幫我<span class="highlight">抬</span>一下這個箱子。'
-                ],
-                meaning: [
-                    '舉起，提高',
-                    '共同用手或肩膀搬運',
-                    '推崇，讚揚'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=抬',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=抬'
-            },
-            '非': {
-                words: ['非常', '非凡', '是非', '非法', '非分'],
-                idioms: ['非同小可', '非親非故', '想入非非', '無可厚非'],
-                sentences: [
-                    '<span class="highlight">非</span>常有趣。',
-                    '這件事是<span class="highlight">非</span>對錯很清楚。'
-                ],
-                meaning: [
-                    '不，不是',
-                    '錯誤，不對',
-                    '特別的，不一般的'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=非',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=非'
-            },
-            '趣': {
-                words: ['有趣', '趣味', '興趣', '樂趣', '趣事'],
-                idioms: ['相映成趣', '妙趣橫生', '興趣盎然', '自討沒趣'],
-                sentences: [
-                    '非常<span class="highlight">趣</span>。',
-                    '他對科學很有<span class="highlight">趣</span>味。'
-                ],
-                meaning: [
-                    '興味，使人愉快',
-                    '意向，旨趣',
-                    '有趣味的'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=趣',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=趣'
-            },
-            '近': {
-                words: ['附近', '接近', '近視', '近代', '近況'],
-                idioms: ['近水樓台', '平易近人', '捨近求遠', '年近古稀'],
-                sentences: [
-                    '<span class="highlight">近</span>看，大大小小的羊像一堆堆棉花。',
-                    '我家<span class="highlight">近</span>學校。'
-                ],
-                meaning: [
-                    '距離短，不遠',
-                    '時間上不久',
-                    '親密，關係密切'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=近',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=近'
-            },
-            '堆': {
-                words: ['堆積', '土堆', '堆滿', '堆疊', '雪堆'],
-                idioms: ['堆金積玉', '堆山積海', '堆案盈几'],
-                sentences: [
-                    '大大小小的羊像一<span class="highlight">堆</span><span class="highlight">堆</span>棉花。',
-                    '房間裡<span class="highlight">堆</span>滿了書。'
-                ],
-                meaning: [
-                    '聚集在一起的事物',
-                    '累積，堆積',
-                    '量詞，用於成堆的東西'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=堆',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=堆'
-            },
-            '棉': {
-                words: ['棉花', '棉被', '棉布', '棉襖', '棉線'],
-                idioms: ['棉裡藏針', '棉力薄材'],
-                sentences: [
-                    '大大小小的羊像一堆堆<span class="highlight">棉</span>花。',
-                    '冬天蓋<span class="highlight">棉</span>被很溫暖。'
-                ],
-                meaning: [
-                    '棉植物及其纖維',
-                    '用棉製成的',
-                    '柔軟像棉花的東西'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=棉',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=棉'
-            },
-            '遠': {
-                words: ['遠方', '遙遠', '遠見', '遠足', '遠離'],
-                idioms: ['遠走高飛', '深謀遠慮', '好高騖遠', '任重道遠'],
-                sentences: [
-                    '<span class="highlight">遠</span>看，白白的羊走在綠綠的草地上。',
-                    '他的家離學校很<span class="highlight">遠</span>。'
-                ],
-                meaning: [
-                    '距離長，不近',
-                    '時間久',
-                    '程度大'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=遠',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=遠'
-            },
-            '景': {
-                words: ['景色', '風景', '景觀', '景點', '景象'],
-                idioms: ['景色宜人', '觸景生情', '大煞風景', '良辰美景'],
-                sentences: [
-                    '美得像風<span class="highlight">景</span>畫。',
-                    '我想多看看農場的<span class="highlight">景</span>色。'
-                ],
-                meaning: [
-                    '風光，景象',
-                    '情況，境況',
-                    '尊敬，仰慕'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=景',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=景'
-            },
-            '忽': {
-                words: ['忽然', '忽略', '忽視', '疏忽', '忽閃'],
-                idioms: ['忽冷忽熱', '玩忽職守', '疏忽大意'],
-                sentences: [
-                    '<span class="highlight">忽</span>然，我聽見一隻小羊咩咩咩的叫了起來。',
-                    '不要<span class="highlight">忽</span>略細節的重要性。'
-                ],
-                meaning: [
-                    '突然，出乎意料地',
-                    '不注意，輕視',
-                    '迅速，快速'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=忽',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=忽'
-            },
-            '聽': {
-                words: ['聽見', '聽從', '聽講', '聽話', '聽眾'],
-                idioms: ['聽天由命', '道聽途說', '危言聳聽', '洗耳恭聽'],
-                sentences: [
-                    '我<span class="highlight">聽</span>見一隻小羊咩咩咩的叫了起來。',
-                    '請仔細<span class="highlight">聽</span>老師講課。'
-                ],
-                meaning: [
-                    '用耳朵接收聲音',
-                    '順從，接受意見',
-                    '任憑，任由'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=聽',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=聽'
-            },
-            '揮': {
-                words: ['揮手', '揮舞', '揮發', '揮霍', '指揮'],
-                idioms: ['揮金如土', '揮汗如雨', '揮灑自如', '借題發揮'],
-                sentences: [
-                    '我向牠<span class="highlight">揮</span><span class="highlight">揮</span>手。',
-                    '他<span class="highlight">揮</span>舞著旗子歡迎我們。'
-                ],
-                meaning: [
-                    '搖動，舞動',
-                    '散發，散出',
-                    '指揮，指示'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=揮',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=揮'
-            },
-            '慢': {
-                words: ['慢慢', '緩慢', '慢跑', '慢車', '傲慢'],
-                idioms: ['慢條斯理', '不緊不慢', '輕攏慢撚', '前慢後恭'],
-                sentences: [
-                    '天色<span class="highlight">慢</span><span class="highlight">慢</span>黑了。',
-                    '老人走路比較緩<span class="highlight">慢</span>。'
-                ],
-                meaning: [
-                    '速度低，不快',
-                    '態度冷淡，不熱情',
-                    '輕視，怠慢'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=慢',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=慢'
-            },
-            '依': {
-                words: ['依然', '依照', '依靠', '依賴', '依次'],
-                idioms: ['依依不捨', '依山傍水', '百依百順', '無依無靠'],
-                sentences: [
-                    '我只好<span class="highlight">依</span><span class="highlight">依</span>不捨的向小羊說再見。',
-                    '請<span class="highlight">依</span>照說明書操作。'
-                ],
-                meaning: [
-                    '靠著，倚仗',
-                    '按照，順從',
-                    '留戀，不忍分離'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=依',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=依'
-            },
-            '捨': {
-                words: ['捨不得', '捨棄', '取捨', '施捨', '捨身'],
-                idioms: ['依依不捨', '捨己為人', '捨近求遠', '難分難捨'],
-                sentences: [
-                    '我只好依依不<span class="highlight">捨</span>的向小羊說再見。',
-                    '他<span class="highlight">捨</span>不得離開家鄉。'
-                ],
-                meaning: [
-                    '放棄，放下',
-                    '施予，給予',
-                    '離開，分別'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=捨',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=捨'
-            },
-            '放': {
-                words: ['放假', '放學', '放心', '放手', '開放'],
-                idioms: ['放虎歸山', '心花怒放', '放蕩不羈', '大放厥詞'],
-                sentences: [
-                    '我們說好下次<span class="highlight">放</span>假時，再去找小羊玩。',
-                    '每天下午三點<span class="highlight">放</span>學。'
-                ],
-                meaning: [
-                    '解除約束，使自由',
-                    '發出，發出',
-                    '擱置，安放'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=放',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=放'
-            },
-            '假': {
-                words: ['放假', '假期', '假日', '休假', '暑假'],
-                idioms: ['假公濟私', '狐假虎威', '假戲真做', '不假思索'],
-                sentences: [
-                    '我們說好下次<span class="highlight">假</span>時，再去找小羊玩。',
-                    '暑假是學生最期待的<span class="highlight">假</span>期。'
-                ],
-                meaning: [
-                    '按規定暫停工作或學習的時間',
-                    '不真實的，虛偽的',
-                    '借用，利用'
-                ],
-                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=假',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=假'
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // 顯示/隱藏返回頂部按鈕
+        window.onscroll = function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
             }
         };
-        
-        // 顯示生字詳情
-        function showCharacterDetail(character, bopomofo, radical, strokes, structure, element) {
-            // 移除所有項目的active類
-            document.querySelectorAll('.vocabulary-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // 為當前點擊的項目添加active類
-            if (element) {
-                element.classList.add('active');
-            }
-            
-            const detailSection = document.getElementById('character-detail');
-            const data = characterData[character] || {
-                words: ['詞1', '詞2', '詞3', '詞4', '詞5'],
-                idioms: ['成語1', '成語2', '成語3'],
-                sentences: ['例句1', '例句2'],
-                meaning: ['字義1', '字義2', '字義3'],
-                eduUrl: 'https://pedia.cloud.edu.tw/',
-                idiomUrl: 'https://dict.idioms.moe.edu.tw/'
-            };
-            
-            document.getElementById('char-large').textContent = character;
-            document.getElementById('char-bopomofo').textContent = bopomofo;
-            document.getElementById('char-radical').textContent = radical;
-            document.getElementById('char-strokes').textContent = strokes;
-            document.getElementById('char-structure').textContent = structure;
-            
-            // 更新詞語列表
-            const wordsList = document.getElementById('char-words');
-            wordsList.innerHTML = '';
-            data.words.forEach(word => {
-                const li = document.createElement('li');
-                li.textContent = word;
-                wordsList.appendChild(li);
-            });
-            
-            // 更新成語列表
-            const idiomsList = document.getElementById('char-idioms');
-            idiomsList.innerHTML = '';
-            data.idioms.forEach(idiom => {
-                const li = document.createElement('li');
-                li.textContent = idiom;
-                idiomsList.appendChild(li);
-            });
-            
-            // 更新例句列表
-            const sentencesList = document.getElementById('char-sentences');
-            sentencesList.innerHTML = '';
-            data.sentences.forEach(sentence => {
-                const li = document.createElement('li');
-                li.innerHTML = sentence;
-                sentencesList.appendChild(li);
-            });
-            
-            // 更新字義列表
-            const meaningList = document.getElementById('char-meaning');
-            meaningList.innerHTML = '';
-            data.meaning.forEach(meaning => {
-                const li = document.createElement('li');
-                li.textContent = meaning;
-                meaningList.appendChild(li);
-            });
-            
-            // 更新外部連結
-            document.getElementById('edu-link').href = data.eduUrl;
-            document.getElementById('edu-link').innerHTML = '<i class="fas fa-external-link-alt"></i> 教育百科 - ' + character;
-            
-            document.getElementById('idiom-link').href = data.idiomUrl;
-            document.getElementById('idiom-link').innerHTML = '<i class="fas fa-external-link-alt"></i> 成語典 - ' + character + '相關成語';
-            
-            // 顯示詳情區塊
-            detailSection.style.display = 'block';
-            
-            // 滾動到詳情區塊
-            detailSection.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // 滾動到指定區塊
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-        
-        // 初始顯示第一個生字的詳情
-        document.addEventListener('DOMContentLoaded', function() {
-            showCharacterDetail('群', 'ㄑㄩㄣˊ', '羊', 13, '左右結構');
-        });
     </script>
 </body>
 </html>
